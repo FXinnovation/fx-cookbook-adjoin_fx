@@ -39,8 +39,7 @@ node() {
       // This will launch foodcritic tests on current cookbook only
       stage ('foodcritic'){
         message = 'foodcritic: FAILED'
-        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
-              foodcritic ./'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk foodcritic ./'
       }
       // Cookstyle stage
       // This will launch cookstyle tests on current cookbook only
@@ -48,16 +47,13 @@ node() {
       // already very permissive. Exception will be handled seperatly for every case
       stage ('cookstyle'){
         message = 'cookstyle: FAILED'
-        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
-              cookstyle -D --force-default-config ./'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk cookstyle -D --force-default-config ./'
       }
       // Kitchen stage
       // This will launch kitchen tests on current cookbook
       stage ('kitchen') {
         message = 'kitchen: FAILED'
-        // Execute only if on master or on a pull request branch
-        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
-              kitchen test --destroy=always -l debug'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk kitchen test --destroy=always -c 5'
       }
       stage ('publish') {
         message = 'publish: FAILED'
@@ -94,9 +90,11 @@ node() {
     }
     // Clean workspace and other folders, needed to ensure we're capable of rebuilding
     // our cache.
-    stage('clean workspace'){
+    stage('cleaning'){
+      // Clean workspace
       cleanWs()
-      sh 'rm -rf ~/.berkshelf/.cache/git'
+      // Making sure kitchen instances are destroyed
+      sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk kitchen destroy -c 5'
     }
   }
 }
