@@ -9,6 +9,9 @@
 # Declaring resource name
 resource_name :adjoin_fx
 
+# Defining default action
+default_action :join
+
 # Declare provider
 provides :adjoin_fx, platform_family: 'rhel'
 
@@ -17,9 +20,6 @@ property :target_ou, String, required: true
 property :username,  String, required: true
 property :domain,    String, required: true
 property :password,  String, required: true, sensitive: true
-
-# Defining default action
-default_action :join
 
 # Defining join action
 action :join do
