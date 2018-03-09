@@ -4,6 +4,7 @@ driver:
   project: dazzlingwrench
   region: us-east1
   preemptible: true
+  network: network
 
 provisioner:
   name: chef_zero
