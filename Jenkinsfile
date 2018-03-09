@@ -80,16 +80,16 @@ node() {
     stage('notification'){
       message = 'SUCCESS'
       hipchatSend (
-        color: color,
+        color:        color,
         credentialId: 'jenkins-hipchat-token',
-        message: "Job Name: ${JOB_NAME} (<a href=\"${BUILD_URL}\">Open</a>)<br /> \
-                  Job Status: ${result} <br /> \
-                  Job Message: ${message}",
-        room: '942680',
-        notify: notify,
-        sendAs: 'Jenkins',
-        server: 'api.hipchat.com',
-        v2enabled: true
+        message:      "Job Name: ${JOB_NAME} (<a href=\"${BUILD_URL}\">Open</a>)<br /> \
+                       Job Status: ${result} <br /> \
+                       Job Message: ${message}",
+        room:         '942680',
+        notify:       notify,
+        sendAs:       'New-Jenkins',
+        server:       'api.hipchat.com',
+        v2enabled:    false
       )
     }
     // Clean workspace and other folders, needed to ensure we're capable of rebuilding
