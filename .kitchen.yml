@@ -18,6 +18,16 @@ platforms:
       image_project: windows-cloud
       image_family: windows-2012-r2
       disk_size: 50
+      metadata:
+        windows-startup-script-ps1: >
+          winrm quickconfig -q \nwinrm s winrm/config/winrs '@{MaxMemoryPerShellMB="512"}'
+          winrm s winrm/config '@{MaxTimeoutms="1800000"}'
+          winrm s winrm/config/service '@{AllowUnencrypted="true"}'
+          winrm s winrm/config/service/auth '@{Basic="true"}'
+          sc config WinRM start=auto
+          netsh firewall add portopening TCP 5985 "Port 5985"
+          winrm s winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
+          get-service winrm
 
 suites:
   - name: default
