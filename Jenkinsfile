@@ -41,7 +41,8 @@ node() {
       // This will launch foodcritic tests on current cookbook only
       stage ('foodcritic'){
         message = 'foodcritic: FAILED'
-        sh 'foodcritic ./'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
+              foodcritic ./'
       }
       // Cookstyle stage
       // This will launch cookstyle tests on current cookbook only
@@ -49,14 +50,16 @@ node() {
       // already very permissive. Exception will be handled seperatly for every case
       stage ('cookstyle'){
         message = 'cookstyle: FAILED'
-        sh 'cookstyle -D --force-default-config ./'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
+              cookstyle -D --force-default-config ./'
       }
       // Kitchen stage
       // This will launch kitchen tests on current cookbook
       stage ('kitchen') {
         message = 'kitchen: FAILED'
         // Execute only if on master or on a pull request branch
-        sh 'kitchen test --destroy=always -c 5'
+        sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
+              kitchen test --destroy=always -c 5'
       }
       stage ('publish') {
         message = 'publish: FAILED'
