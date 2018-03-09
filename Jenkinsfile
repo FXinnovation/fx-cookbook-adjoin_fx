@@ -81,11 +81,11 @@ node() {
       message = 'SUCCESS'
       hipchatSend (
         color: color,
-        credentialId: '',
+        credentialId: 'jenkins-hipchat-token',
         message: "Job Name: ${JOB_NAME} (<a href=\"${BUILD_URL}\">Open</a>)<br /> \
                   Job Status: ${result} <br /> \
                   Job Message: ${message}",
-        room: '',
+        room: '942680',
         notify: notify,
         sendAs: 'Jenkins',
         server: 'api.hipchat.com',
