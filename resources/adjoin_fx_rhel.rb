@@ -6,6 +6,9 @@
 # description::Executing an adjoin on a rhel machine
 #
 
+# Declaring resource name
+resource_name :adjoin_fx
+
 # Declare provider
 provides :adjoin_fx, platform_family: 'rhel'
 
