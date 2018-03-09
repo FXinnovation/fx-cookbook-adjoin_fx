@@ -57,7 +57,7 @@ node() {
         message = 'kitchen: FAILED'
         // Execute only if on master or on a pull request branch
         sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk\
-              kitchen test --destroy=always -c 5'
+              kitchen test --destroy=always -l debug'
       }
       stage ('publish') {
         message = 'publish: FAILED'
