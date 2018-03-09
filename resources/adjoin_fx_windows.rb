@@ -13,11 +13,11 @@ resource_name :adjoin_fx
 provides :adjoin_fx, platform_family: 'windows'
 
 # Defining properties
-property :target_ou, String,                  required: true
-property :username,  String,                  required: true
-property :domain,    String,                  required: true
-property :password,  String,                  required: true, sensitive: true
-property :reboot,    [Trueclass, Falseclass], default:  true
+property :target_ou, String,        required: true
+property :username,  String,        required: true
+property :domain,    String,        required: true
+property :password,  String,        required: true, sensitive: true
+property :reboot,    [true, false], default:  true
 
 # Defining default action
 default_action :join
