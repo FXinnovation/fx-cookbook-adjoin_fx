@@ -4,8 +4,6 @@ driver:
   project: dazzlingwrench
   region: us-east1
   preemptible: true
-  network: network
-  use_private_ip: true
 
 provisioner:
   name: chef_zero
