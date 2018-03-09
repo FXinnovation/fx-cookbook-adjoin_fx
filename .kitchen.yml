@@ -15,7 +15,7 @@ platforms:
   - name: windows2012
     driver:
       email: 954209166228-compute@developer.gserviceaccount.com
-      image_famlily: windows-2012-r2
+      image_family: windows-2012-r2
       disk_size: 50
 
 suites:
