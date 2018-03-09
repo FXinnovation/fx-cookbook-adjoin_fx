@@ -1,0 +1,25 @@
+---
+driver:
+  name: gce
+  project: dazzlingwrench
+  region: us-east1
+  preemptible: true
+
+provisioner:
+  name: chef_zero
+
+transport:
+  username: kitchenuser
+
+platforms:
+  - name: windows2012
+    driver:
+      email: 954209166228-compute@developer.gserviceaccount.com
+      image_famlily: windows-2012-r2
+      disk_size: 50
+
+suites:
+  - name: default
+    run_list:
+      - recipe[adjoin_fx::kitchen]
+    attributes:
