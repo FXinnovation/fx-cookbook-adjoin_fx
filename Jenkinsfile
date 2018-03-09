@@ -91,10 +91,10 @@ node() {
     // Clean workspace and other folders, needed to ensure we're capable of rebuilding
     // our cache.
     stage('cleaning'){
-      // Clean workspace
-      cleanWs()
       // Making sure kitchen instances are destroyed
       sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk kitchen destroy -c 5'
+      // Clean workspace
+      cleanWs()
     }
   }
 }
