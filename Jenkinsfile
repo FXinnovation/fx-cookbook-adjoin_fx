@@ -33,9 +33,7 @@ node() {
           script:       'echo "${BRANCH_NAME}"'
         ).trim()
         // Verifying versions of tools
-        sh 'chef --version'
-        sh 'foodcritic --version'
-        sh 'cookstyle --version'
+        sh 'docker run --rm fxinnovation/chefdk chef --version'
       }
       // Foodcritic stage
       // This will launch foodcritic tests on current cookbook only
