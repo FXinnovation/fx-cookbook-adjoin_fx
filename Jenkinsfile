@@ -66,6 +66,7 @@ node() {
         }else{
           println 'Not a tagged version, skipping deployment'
         }
+        message = 'SUCCESS'
       }
     }
   }catch(error){
@@ -78,7 +79,6 @@ node() {
     // Notification stage
     // This will send a notification on hip chat :)
     stage('notification'){
-      message = 'SUCCESS'
       hipchatSend (
         color:        color,
         credentialId: 'jenkins-hipchat-token',
