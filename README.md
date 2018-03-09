@@ -1,29 +1,12 @@
-# README #
+# adjoin_fx
+The adjoin_fx cookbook provides you with resource to perform a join on a machine to a particular Active Directory
+## Requirements
+### Cookbooks
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Chef
 
-### What is this repository for? ###
+### Platforms
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Resources
+### adjoin_fx
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact

@@ -1,0 +1,47 @@
+#
+# cookbook::adjoin_fx
+# resource::adjoin_fx
+#
+# author::fxinnovation
+# description::Custom resource for join a windows machine to an Active Directory
+#
+
+# Defining resource name
+resource_name :adjoin_fx
+
+# Declare provider
+provides :adjoin_fx, platform_family: 'windows'
+
+# Defining properties
+property :target_ou, String,                  required: true
+property :username,  String,                  required: true
+property :domain,    String,                  required: true
+property :password,  String,                  required: true, sensitive: true
+property :reboot,    [Trueclass, Falseclass], default:  true
+
+# Defining default action
+default_action :join
+
+# Defining join action
+action :join do
+  # Defining a reboot resource
+  reboot "adjoin_fx_reboot_#{new_resource.name}" do
+    reason     'Rebooting because of adjoin_fx_windows chef resource'
+    delay_mins 0
+    action     :nothing
+  end
+
+  # Joining to the domain
+  powershell_script "ad_join_#{new_resource.name}" do
+    not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
+    notifies :reboot_now, 'reboot[reboot]', :immediately
+    code     <<-EOH
+$username = "#{new_resource.domain}\\#{new_resource.user}"
+$password = "#{new_resource.password}" | ConvertTo-SecureString -asPLainText -Force
+$credential = New-Object System.Management.Automation.PSCredential($username,$password)
+$DomainNameFQDN = "#{new_resource.domain}"
+$OUPath = "#{new_resource.target_ou}"
+Add-Computer $DomainNameFQDN -OUPath $OUPath -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
+    EOH
+  end
+end
