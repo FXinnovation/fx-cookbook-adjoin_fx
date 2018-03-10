@@ -11,6 +11,14 @@ driver:
 
 provisioner:
   name: chef_zero
+  max_retries: 3
+  wait_for_retry: 90
+  retry_on_exit_code:
+  - 35
+  - 1
+  client_rb:
+    exit_status: :enabled
+    client_fork: false
 
 verifier:
   name: inspec
