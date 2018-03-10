@@ -94,7 +94,7 @@ node() {
     // our cache.
     stage('cleaning'){
       // Making sure kitchen instances are destroyed
-      sh 'docker run --rm -v \$(pwd):/data -w /data fxinnovation/chefdk kitchen destroy -c 5'
+      sh 'docker run --rm -v \$(pwd):/data -v /tmp:/tmp -w /data fxinnovation/chefdk kitchen destroy -c 5'
       // Clean workspace
       cleanWs()
     }
