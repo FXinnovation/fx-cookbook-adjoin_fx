@@ -6,6 +6,8 @@ driver:
   preemptible: true
   metadata:
     ssh-keys: <%= 'kitchenuser:' + IO.binread("/tmp/id_rsa.pub").rstrip! %>
+  tags:
+  - fxinnovation
 
 provisioner:
   name: chef_zero
