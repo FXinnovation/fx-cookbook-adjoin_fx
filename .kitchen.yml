@@ -12,12 +12,19 @@ transport:
   username: kitchenuser
 
 platforms:
+  - name: centos6
+    driver:
+      image_project: centos-cloud
+      image_family: centos-6
+  - name: centos7
+    driver:
+      image_project: centos-cloud
+      image_family: centos-7
   - name: windows2008
     driver:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2008-r2
-      disk_size: 50
       metadata:
         windows-startup-script-ps1: |
           winrm quickconfig -q
@@ -33,7 +40,6 @@ platforms:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2012-r2
-      disk_size: 50
       metadata:
         windows-startup-script-ps1: |
           winrm quickconfig -q
@@ -49,7 +55,6 @@ platforms:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2016
-      disk_size: 50
       metadata:
         windows-startup-script-ps1: |
           winrm quickconfig -q
