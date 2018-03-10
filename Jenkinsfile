@@ -62,7 +62,7 @@ node() {
         if (commit_id != tag_id){
           // TODO Define publishing steps
         }else{
-          println 'Not a tagged version, skipping deployment'
+          println 'Not a tagged version, skipping publish'
         }
         message = 'SUCCESS'
       }
