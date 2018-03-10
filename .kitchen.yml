@@ -93,7 +93,7 @@ suites:
     verifier:
       inspec_tests:
       - name: windows
-        path: test/kitchen/windows
+        path: test/inspec/windows
   - name: rhel
     run_list:
       - recipe[adjoin_fx::kitchen]
@@ -109,4 +109,4 @@ suites:
     verifier:
       inspec_tests:
       - name: rhel
-        path: test/kitchen/rhel
+        path: test/inspec/rhel
