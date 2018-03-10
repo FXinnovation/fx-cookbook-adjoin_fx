@@ -4,12 +4,15 @@ driver:
   project: dazzlingwrench
   region: us-east1
   preemptible: true
+  metadata:
+    ssh-keys: <%= 'kitchenuser:' + IO.binread("/tmp/id_rsa.pub").rstrip! %>
 
 provisioner:
   name: chef_zero
 
 transport:
   username: kitchenuser
+  ssh_key: /tmp/id_rsa
 
 platforms:
   - name: centos6

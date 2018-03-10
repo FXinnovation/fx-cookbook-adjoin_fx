@@ -34,6 +34,8 @@ node() {
         ).trim()
         // Verifying versions of tools
         sh 'docker run --rm fxinnovation/chefdk chef --version'
+        // Generating new temporary key
+        sh 'ssh-keygen -t rsa -f /tmp/id_rsa -P \'\''
       }
       // Foodcritic stage
       // This will launch foodcritic tests on current cookbook only
