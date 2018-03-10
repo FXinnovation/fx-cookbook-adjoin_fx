@@ -1,3 +1,9 @@
+#
+# Inspec test for adjoin_fx on rhel platform family
+#
+# the Inspec refetence, with examples and extensive documentation, can be
+# found at https://inspec.io/docker/reference/resources/
+#
 control 'adjoin_fx - 01' do
   title 'The required packages should be installed'
   packages = %w(
