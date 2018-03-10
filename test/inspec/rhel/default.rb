@@ -10,7 +10,7 @@ control 'adjoin_fx - 01' do
   )
   packages.each do |package_name|
     describe package(package_name) do
-      it { should be_installed}
+      it { should be_installed }
     end
   end
 end
