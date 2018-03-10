@@ -4,7 +4,7 @@
 # the Inspec refetence, with examples and extensive documentation, can be
 # found at https://inspec.io/docker/reference/resources/
 #
-control 'adjoin_fx - 01' do
+control 'adjoin_fx - rhel - 01' do
   title 'The required packages should be installed'
   packages = %w(
     sssd
@@ -21,7 +21,7 @@ control 'adjoin_fx - 01' do
   end
 end
 
-control 'adjoin_fx - 02' do
+control 'adjoin_fx - rhel - 02' do
   title 'The computer should be joined to a domain'
   describe command('realm list') do
     its('stdout') { should match(/domain-name:/) }
