@@ -13,6 +13,6 @@
 #   password  node['adjoin_fx']['password']
 #   action    :join
 # end
-file 'C:\\Windows\\test.txt' do
+file "#{Chef::Config['local_cache_path']}/test.txt" do
   action :create
 end
