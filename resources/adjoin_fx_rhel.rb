@@ -39,7 +39,8 @@ action :join do
   end
 
   # Joining AD
-  # NOTE: PUtting the password as an env var is safer because it won't be in the history or any output
+  # NOTE: Putting the password as an env var is safer because it won't
+  # be in the history or any output.
   execute "adjoin_fx_#{new_resource.name}" do
     environment 'JOIN_USER_SECRET' => new_resource.password
     command     "echo \"${JOIN_USER_SECRET}\" | realm join -v \
