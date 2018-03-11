@@ -57,6 +57,9 @@ node() {
         message = 'kitchen: FAILED'
         sh 'docker run --rm -v \$(pwd):/data -v /tmp:/tmp -w /data fxinnovation/chefdk kitchen test --destroy=always -c 5'
       }
+      stage ('result'){
+        junit '*_inspec.xml'
+      }
       stage ('publish') {
         message = 'publish: FAILED'
         if (commit_id != tag_id){
