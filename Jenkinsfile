@@ -57,9 +57,6 @@ node() {
         message = 'kitchen: FAILED'
         sh 'docker run --rm -v \$(pwd):/data -v /tmp:/tmp -w /data fxinnovation/chefdk kitchen test --destroy=always -c 5'
       }
-      stage ('result'){
-        junit '*_inspec.xml'
-      }
       stage ('publish') {
         message = 'publish: FAILED'
         if (commit_id != tag_id){
@@ -92,6 +89,9 @@ node() {
         server:       'api.hipchat.com',
         v2enabled:    false
       )
+    }
+    stage ('result'){
+      junit '*_inspec.xml'
     }
     // Clean workspace and other folders, needed to ensure we're capable of rebuilding
     // our cache.
