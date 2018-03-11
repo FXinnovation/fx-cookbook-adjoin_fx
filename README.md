@@ -22,6 +22,7 @@ The adjoin_fx resoource is a resource that allows you to join a machine to a dom
 You can use it on rhel or windows.
 
 #### Properties
+
 | Name | Type | Required | Default | Description |
 | ---- | ---- | -------- | ------- | ----------- |
 | `username` | `String` | `true` | - | Username used to join the machine |
