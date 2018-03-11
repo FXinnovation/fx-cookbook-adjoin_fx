@@ -24,7 +24,7 @@ verifier:
   name: inspec
   sudo: true
   format: junit
-  output: %{platform}_%{suite}_inspec.xml
+  output: "%{platform}_%{suite}_inspec.xml"
 
 transport:
   username: kitchenuser
