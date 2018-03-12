@@ -28,7 +28,7 @@ You can use it on rhel or windows.
 | `username` | `String` | `true` | - | Username used to join the machine |
 | `password` | `String` | `true` | - | Password used to join the machine |
 | `domain` | `String ` | `true` | - | Domain to Join |
-| `target_ou` | `String` | `true` | - | OU in which the Server Object will reside |
+| `target_ou` | `String` | `false` | - | OU in which the Server Object will reside |
 | `handle_reboot` | `[true, false]` | `false` | `true` | *Windows only* Reboots the server after joining the machine |
 
 ## Versionning
