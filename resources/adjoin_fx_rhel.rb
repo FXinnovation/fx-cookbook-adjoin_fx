@@ -50,7 +50,7 @@ action :join do
   # be in the history or any output.
   execute "adjoin_fx_#{new_resource.name}" do
     environment 'JOIN_USER_SECRET' => new_resource.password
-    command     "echo \"${JOIN_USER_SECRET}\" | realm join -v \
+    command     "echo ${JOIN_USER_SECRET} | realm join -v \
                    --user=#{new_resource.username} \
                    #{new_resource.domain} \
 		   #{target_ou_string} \

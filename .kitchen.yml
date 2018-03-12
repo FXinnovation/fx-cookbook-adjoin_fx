@@ -94,7 +94,7 @@ suites:
       - recipe[adjoin_fx::kitchen]
     attributes:
       adjoin_fx:
-        username: JoinDomain@c.dazzlingwrench.internal
+        username: JoinDomain
         domain: activedirectory.c.dazzlingwrench.internal
         password: 'NiZrWW&QBw6GBFm6"ijB"4'
     includes:
@@ -110,7 +110,7 @@ suites:
       - recipe[adjoin_fx::kitchen]
     attributes:
       adjoin_fx:
-        username: JoinDomain@c.dazzlingwrench.internal
+        username: JoinDomain
         domain: activedirectory.c.dazzlingwrench.internal
         password: 'NiZrWW&QBw6GBFm6"ijB"4'
     includes:
