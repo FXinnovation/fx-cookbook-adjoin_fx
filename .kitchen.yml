@@ -94,10 +94,9 @@ suites:
       - recipe[adjoin_fx::kitchen]
     attributes:
       adjoin_fx:
-        target_ou: CHANGE_ME
-        username: CHANGE_ME
-        domain: CHANGE_ME
-        password: CHANGE_ME
+        username: JoinDomain@c.dazzlingwrench.internal
+        domain: activedirectory.c.dazzlingwrench.internal
+        password: 'NiZrWW&QBw6GBFm6"ijB"4'
     includes:
     - windows2008
     - windows2012
@@ -111,10 +110,9 @@ suites:
       - recipe[adjoin_fx::kitchen]
     attributes:
       adjoin_fx:
-        target_ou: CHANGE_ME
-        username: CHANGE_ME
-        domain: CHANGE_ME
-        password: CHANGE_ME
+        username: JoinDomain@c.dazzlingwrench.internal
+        domain: activedirectory.c.dazzlingwrench.internal
+        password: 'NiZrWW&QBw6GBFm6"ijB"4'
     includes:
     - centos7
     - centos6
