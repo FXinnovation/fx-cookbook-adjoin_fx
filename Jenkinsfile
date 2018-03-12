@@ -1,5 +1,5 @@
 #!/bin/groovy
-// Setting some notification variables
+// Setting some variables
 notify      = false
 color       = "GREEN"
 result      = "SUCCESS"
