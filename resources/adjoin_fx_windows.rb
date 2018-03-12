@@ -13,7 +13,7 @@ resource_name :adjoin_fx
 provides :adjoin_fx, platform_family: 'windows'
 
 # Defining properties
-property :target_ou,     String,        required: true
+property :target_ou,     String
 property :username,      String,        required: true
 property :domain,        String,        required: true
 property :password,      String,        required: true, sensitive: true
@@ -31,6 +31,13 @@ action :join do
     action     :nothing
   end
 
+  # Defining target_ou_string
+  if property_is_set?(:target_ou)
+    target_ou_string = "-OUPath \"#{new_resource.target_ou}\""
+  else
+    target_ou_string = ''
+  end
+
   # Joining to the domain
   powershell_script "ad_join_#{new_resource.name}" do
     not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
@@ -40,8 +47,7 @@ $username = "#{new_resource.domain}\\#{new_resource.username}"
 $password = "#{new_resource.password}" | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 $DomainNameFQDN = "#{new_resource.domain}"
-$OUPath = "#{new_resource.target_ou}"
-Add-Computer $DomainNameFQDN -OUPath $OUPath -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
+Add-Computer $DomainNameFQDN #{target_ou_string} -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
     EOH
   end
 end

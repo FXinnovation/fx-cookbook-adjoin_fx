@@ -13,7 +13,7 @@ resource_name :adjoin_fx
 provides :adjoin_fx, platform_family: 'rhel'
 
 # Defining properties
-property :target_ou, String, required: true
+property :target_ou, String
 property :username,  String, required: true
 property :password,  String, required: true, sensitive: true
 property :domain,    String, required: true
@@ -38,6 +38,13 @@ action :join do
     package package_name
   end
 
+  # Generating target_ou_string
+  if property_is_set?(:target_ou)
+    target_ou_string = "--computer-ou=#{new_resource.target_ou}"
+  else
+    target_ou_string = ''
+  end
+
   # Joining AD
   # NOTE: Putting the password as an env var is safer because it won't
   # be in the history or any output.
@@ -46,7 +53,7 @@ action :join do
     command     "echo \"${JOIN_USER_SECRET}\" | realm join -v \
                    --user=#{new_resource.username} \
                    #{new_resource.domain} \
-		   --computer-ou=#{new_resource.target_ou} \
+		   #{target_ou_string} \
                    --unattended"
     not_if      "realm list | grep '^#{new_resource.domain}'"
     retries     3
