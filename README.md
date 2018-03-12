@@ -1,11 +1,11 @@
 # adjoin_fx
 The adjoin_fx cookbook provides you with resource to perform a join on a machine to a particular Active Directory
-## Depenedencies
+## Requirements
 ### Cookbooks
 N/A
 
 ### Chef
-* `>= 13`
+* `>= 12.1`
 
 ### Platforms
 * windows2008r2
@@ -30,3 +30,12 @@ You can use it on rhel or windows.
 | `domain` | `String ` | `true` | - | Domain to Join |
 | `target_ou` | `String` | `true` | - | OU in which the Server Object will reside |
 | `reboot` | `[true, false]` | `false` | `true` | *Windows only* Reboots the server after joining the machine |
+
+## Versionning
+This cookbook will follow semantic versionning 2.0.0 as described [here](https://semver.org/)
+
+## Lisence
+MIT
+
+## Contributing
+Put link vers contributing here
