@@ -25,7 +25,7 @@ default_action :join
 # Defining join action
 action :join do
   # Defining a reboot resource
-  reboot "adjoin_fx_reboot_#{new_resource.name}" do
+  reboot "adjoin_fx_reboot" do
     reason     'Rebooting because of adjoin_fx_windows chef resource'
     delay_mins 0
     action     :nothing
@@ -41,7 +41,7 @@ action :join do
   # Joining to the domain
   powershell_script "ad_join_#{new_resource.name}" do
     not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
-    notifies :reboot_now, 'reboot[reboot]', :immediately if new_resource.handle_reboot == true
+    notifies :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately if new_resource.handle_reboot == true
     code     <<-EOH
 $username = "#{new_resource.username}"
 $password = "#{new_resource.password}" | ConvertTo-SecureString -asPLainText -Force
