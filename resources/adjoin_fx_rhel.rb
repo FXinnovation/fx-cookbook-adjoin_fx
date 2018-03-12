@@ -39,11 +39,11 @@ action :join do
   end
 
   # Generating target_ou_string
-  if property_is_set?(:target_ou)
-    target_ou_string = "--computer-ou=#{new_resource.target_ou}"
-  else
-    target_ou_string = ''
-  end
+  target_ou_string = if property_is_set?(:target_ou)
+                       "--computer-ou=#{new_resource.target_ou}"
+                     else
+                       ''
+                     end
 
   # Joining AD
   # NOTE: Putting the password as an env var is safer because it won't

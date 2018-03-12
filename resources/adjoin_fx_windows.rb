@@ -32,11 +32,11 @@ action :join do
   end
 
   # Defining target_ou_string
-  if property_is_set?(:target_ou)
-    target_ou_string = "-OUPath \"#{new_resource.target_ou}\""
-  else
-    target_ou_string = ''
-  end
+  target_ou_string = if property_is_set?(:target_ou)
+                       "-OUPath \"#{new_resource.target_ou}\""
+                     else
+                       ''
+                     end
 
   # Joining to the domain
   powershell_script "ad_join_#{new_resource.name}" do
