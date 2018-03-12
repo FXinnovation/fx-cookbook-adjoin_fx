@@ -43,8 +43,8 @@ action :join do
     not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
     notifies :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately if new_resource.handle_reboot == true
     code     <<-EOH
-$username = "#{new_resource.username}"
-$password = "#{new_resource.password}" | ConvertTo-SecureString -asPLainText -Force
+$username = '#{new_resource.username}'
+$password = '#{new_resource.password}' | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 $DomainNameFQDN = "#{new_resource.domain}"
 Add-Computer $DomainNameFQDN #{target_ou_string} -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
