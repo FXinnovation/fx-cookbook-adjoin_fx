@@ -29,7 +29,7 @@ You can use it on rhel or windows.
 | `password` | `String` | `true` | - | Password used to join the machine |
 | `domain` | `String ` | `true` | - | Domain to Join |
 | `target_ou` | `String` | `true` | - | OU in which the Server Object will reside |
-| `reboot` | `[true, false]` | `false` | `true` | *Windows only* Reboots the server after joining the machine |
+| `handle_reboot` | `[true, false]` | `false` | `true` | *Windows only* Reboots the server after joining the machine |
 
 ## Versionning
 This cookbook will follow semantic versionning 2.0.0 as described [here](https://semver.org/)

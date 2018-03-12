@@ -13,11 +13,11 @@ resource_name :adjoin_fx
 provides :adjoin_fx, platform_family: 'windows'
 
 # Defining properties
-property :target_ou, String,        required: true
-property :username,  String,        required: true
-property :domain,    String,        required: true
-property :password,  String,        required: true, sensitive: true
-property :reboot,    [true, false], default:  true
+property :target_ou,     String,        required: true
+property :username,      String,        required: true
+property :domain,        String,        required: true
+property :password,      String,        required: true, sensitive: true
+property :handle_reboot, [true, false], default:  true
 
 # Defining default action
 default_action :join
@@ -34,7 +34,7 @@ action :join do
   # Joining to the domain
   powershell_script "ad_join_#{new_resource.name}" do
     not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
-    notifies :reboot_now, 'reboot[reboot]', :immediately
+    notifies :reboot_now, 'reboot[reboot]', :immediately if new_resource.handle_reboot == true
     code     <<-EOH
 $username = "#{new_resource.domain}\\#{new_resource.user}"
 $password = "#{new_resource.password}" | ConvertTo-SecureString -asPLainText -Force
