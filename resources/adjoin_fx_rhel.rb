@@ -16,15 +16,15 @@ provides :adjoin_fx, platform_family: 'rhel'
 property :target_ou,           String
 property :os_name,             String
 property :os_version,          String
-property :membership_software, ['samba', 'adcli']
+property :membership_software, %w(samba adcli)
 property :one_time_password,   String
-property :client_software,     ['sssd', 'winbind']
-property :server_software,     ['active-directory', 'ipa']
+property :client_software,     %w(sssd winbind)
+property :server_software,     %w(active-directory ipa)
 property :server,              String
-property :no_password,         [true, false],              default:  false
-property :username,            String,                     required: true
-property :password,            String,                     required: true, sensitive: true
-property :domain,              String,                     required: true
+property :no_password,         [true, false],           default:  false
+property :username,            String,                  required: true
+property :password,            String,                  required: true, sensitive: true
+property :domain,              String,                  required: true
 
 # Declaring default action
 default_action :join
@@ -57,7 +57,7 @@ action :join do
   options_string << "--one-time-password=#{new_resource.one_time_password} "     if property_is_set?(:one_time_password)
   options_string << "--client-sofware=#{new_resource.client_software} "          if property_is_set?(:client_software)
   options_string << "--server_software=#{new_resource.server_software} "         if property_is_set?(:server_software)
-  options_string << "--no-password "                                             if new_resource.no_password == true
+  options_string << '--no-password '                                             if new_resource.no_password == true
 
   # Defining what property to use to join the domain
   join_fqdn = if property_is_set?(:server)

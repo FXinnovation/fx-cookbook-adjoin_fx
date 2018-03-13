@@ -48,10 +48,10 @@ action :join do
   options_string << "-NewName \"#{new_resource.new_name}\" " if property_is_set?(:new_name)
 
   # Defining force option
-  options_string << "-Force " if new_resource.force == true
+  options_string << '-Force ' if new_resource.force == true
 
   # Defining force option
-  options_string << "-PassThru " if new_resource.pass_thru == true
+  options_string << '-PassThru ' if new_resource.pass_thru == true
 
   # Joining to the domain
   # NOTE: Putting the password as an environment variable is safer because the env var won't be written to disk
