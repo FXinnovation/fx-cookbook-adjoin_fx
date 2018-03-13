@@ -12,9 +12,11 @@
 # a user to join the server. It won't be accessible publicly and only from
 # our kitchen servers.
 adjoin_fx 'default' do
-  username  node['adjoin_fx']['username']
-  domain    node['adjoin_fx']['domain']
-  password  node['adjoin_fx']['password']
-  server    node['adjoin_fx']['server'] if node['platform_family'] == 'windows'
+  username   node['adjoin_fx']['username']
+  domain     node['adjoin_fx']['domain']
+  password   node['adjoin_fx']['password']
+  server     node['adjoin_fx']['server']   if node['platform_family'] == 'windows'
+  os_name    node['platform_family']       unless node['platform_family'] == 'windows'
+  os_version node['platform_version']      unless node['platform_family'] == 'windows'
   action    :join
 end
