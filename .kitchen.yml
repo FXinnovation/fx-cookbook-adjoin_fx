@@ -112,7 +112,8 @@ suites:
     attributes:
       adjoin_fx:
         username: JoinDomain
-        domain: activedirectory.c.dazzlingwrench.internal
+        domain: c.dazzlingwrench.internal
+        server: activedirectory.c.dazzlingwrench.internal
         password: 'NiZrWW&QBw6GBFm6"ijB"4'
     includes:
     - centos7
