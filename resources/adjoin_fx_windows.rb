@@ -50,7 +50,7 @@ $DomainNameFQDN = "#{new_resource.domain}"
 Add-Computer $DomainNameFQDN #{target_ou_string} -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
     EOH
     environment(
-      'password' => new_resource.clear_password
+      'clear_password' => new_resource.password
     )
   end
 end
