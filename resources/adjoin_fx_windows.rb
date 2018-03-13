@@ -20,7 +20,6 @@ property :username,      String,        required: true
 property :domain,        String,        required: true
 property :password,      String,        required: true, sensitive: true
 property :handle_reboot, [true, false], default:  true
-property :force,         [true, false], default:  false
 property :pass_thru,     [true, false], default:  false
 
 # Defining default action
@@ -48,9 +47,6 @@ action :join do
   options_string << "-NewName \"#{new_resource.new_name}\" " if property_is_set?(:new_name)
 
   # Defining force option
-  options_string << '-Force ' if new_resource.force == true
-
-  # Defining force option
   options_string << '-PassThru ' if new_resource.pass_thru == true
 
   # Joining to the domain
@@ -66,7 +62,7 @@ action :join do
 $username = '#{new_resource.username}'
 $password = $Env:clear_password | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
-Add-Computer "#{new_resource.domain}" #{options_string} -Credential $credential -WarningAction SilentlyContinue -ErrorAction Stop
+Add-Computer "#{new_resource.domain}" #{options_string} -Credential $credential -WarningAction SilentlyContinue -Force -ErrorAction Stop
     EOH
   end
 end
