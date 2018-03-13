@@ -12,7 +12,6 @@
 # a user to join the server. It won't be accessible publicly and only from
 # our kitchen servers.
 adjoin_fx 'default' do
-  target_ou node['adjoin_fx']['target_ou']
   username  node['adjoin_fx']['username']
   domain    node['adjoin_fx']['domain']
   password  node['adjoin_fx']['password']
