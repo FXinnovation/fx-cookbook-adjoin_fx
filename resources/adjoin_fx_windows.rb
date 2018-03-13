@@ -60,7 +60,7 @@ action :join do
     environment 'clear_password' => new_resource.password
     code        <<-EOH
 $username = '#{new_resource.username}'
-$password = $Env:clear_password | ConvertTo-SecureString -asPLainText -Force
+$password = '#{new_resource.password}' | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName "#{new_resource.domain}" #{options_string} -Credential $credential -WarningAction SilentlyContinue -Force -ErrorAction Stop
     EOH
