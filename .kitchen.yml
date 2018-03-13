@@ -95,8 +95,9 @@ suites:
     attributes:
       adjoin_fx:
         username: JoinDomain
-        domain: activedirectory.c.dazzlingwrench.internal
+        domain: c.dazzlingwrench.internal
         password: 'NiZrWW&QBw6GBFm6"ijB"4'
+        server: activedirectory.c.dazzlingwrench.internal
     includes:
     - windows2008
     - windows2012

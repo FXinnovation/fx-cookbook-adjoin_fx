@@ -14,6 +14,7 @@ provides :adjoin_fx, platform_family: 'windows'
 
 # Defining properties
 property :target_ou,     String
+property :server,        String
 property :username,      String,        required: true
 property :domain,        String,        required: true
 property :password,      String,        required: true, sensitive: true
@@ -38,6 +39,13 @@ action :join do
                        ''
                      end
 
+  # Defining server string
+  server_string = if property_is_set?(:server)
+                    "-Server #{new_resource.server}"
+                  else
+                    ''
+                  end
+
   # Joining to the domain
   powershell_script "ad_join_#{new_resource.name}" do
     not_if   '((gwmi win32_computersystem).partofdomain -eq $true)'
@@ -47,7 +55,7 @@ $username = '#{new_resource.username}'
 $password = $Env:clear_password | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 $DomainNameFQDN = "#{new_resource.domain}"
-Add-Computer $DomainNameFQDN #{target_ou_string} -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
+Add-Computer $DomainNameFQDN #{target_ou_string} #{server_string} -Credential $credential -WarningAction SilentlyContinue -WarningVariable Message -Force -ErrorAction Stop
     EOH
     environment(
       'clear_password' => new_resource.password

@@ -15,5 +15,6 @@ adjoin_fx 'default' do
   username  node['adjoin_fx']['username']
   domain    node['adjoin_fx']['domain']
   password  node['adjoin_fx']['password']
+  server    node['adjoin_fx']['server'] if node['platform_family'] == 'windows'
   action    :join
 end
