@@ -16,7 +16,7 @@ adjoin_fx 'default' do
   domain     node['adjoin_fx']['domain']
   password   node['adjoin_fx']['password']
   server     node['adjoin_fx']['server']
-  os_name    node['platform_family']       unless node['platform_family'] == 'windows'
+  os_name    node['platform']              unless node['platform_family'] == 'windows'
   os_version node['platform_version']      unless node['platform_family'] == 'windows'
   action     :join
 end
