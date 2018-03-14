@@ -75,6 +75,7 @@ platforms:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2016
+      machine_type: n1-standard-2
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
