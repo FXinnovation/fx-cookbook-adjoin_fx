@@ -30,7 +30,7 @@ action :join do
   # Defining a reboot resource
   reboot 'adjoin_fx_reboot' do
     reason     'Rebooting because of adjoin_fx_windows chef resource'
-    delay_mins 1
+    delay_mins 0
     action     :nothing
   end
 
