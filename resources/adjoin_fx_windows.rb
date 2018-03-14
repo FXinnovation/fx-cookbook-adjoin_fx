@@ -49,10 +49,6 @@ action :join do
   # Defining force option
   options_string << '-PassThru ' if new_resource.pass_thru == true
 
-  Chef::Log.warn("$username = '#{new_resource.domain}\\#{new_resource.username}'")
-  Chef::Log.warn("$password = '#{new_resource.password}' | ConvertTo-SecureString -asPLainText -Force")
-  Chef::Log.warn('$credential = New-Object System.Management.Automation.PSCredential($username,$password)')
-  Chef::Log.warn("Add-Computer -DomainName \"#{new_resource.domain}\" #{options_string} -Credential $credential -WarningAction SilentlyContinue -Force -ErrorAction Stop")
   # Joining to the domain
   # NOTE: Putting the password as an environment variable is safer because the env var won't be written to disk
   # (To the best of my knowledge)
