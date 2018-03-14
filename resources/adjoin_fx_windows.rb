@@ -61,7 +61,7 @@ Add-Computer "#{new_resource.domain}" #{options_string} -Credential $credential 
     EOH
     retries     3
     retry_delay 5
-    not_if      '((gwmi win32_computersystem).partofdomain -eq $true)'
+    not_if      '(gwmi win32_computersystem).partofdomain', :convert_boolean_return => true
     notifies    :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately if new_resource.handle_reboot == true
     environment 'clear_password' => new_resource.password
     action      :run
