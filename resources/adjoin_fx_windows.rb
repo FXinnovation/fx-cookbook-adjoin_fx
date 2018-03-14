@@ -56,7 +56,7 @@ action :join do
     retries     3
     retry_delay 5
     not_if      '((gwmi win32_computersystem).partofdomain -eq $true)'
-    notifies    :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately
+    notifies    :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately if new_resource.handle_reboot == true
     environment 'clear_password' => new_resource.password
     code        <<-EOH
 $username = '#{new_resource.domain}\\#{new_resource.username}'
