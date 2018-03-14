@@ -49,7 +49,7 @@ action :join do
   # Defining force option
   options_string << '-PassThru ' if new_resource.pass_thru == true
 
-  Chef::Log.warn("$username = '#{new_resource.username}'")
+  Chef::Log.warn("$username = '#{new_resource.domain}\\#{new_resource.username}'")
   Chef::Log.warn("$password = '#{new_resource.password}' | ConvertTo-SecureString -asPLainText -Force")
   Chef::Log.warn('$credential = New-Object System.Management.Automation.PSCredential($username,$password)')
   Chef::Log.warn("Add-Computer -DomainName \"#{new_resource.domain}\" #{options_string} -Credential $credential -WarningAction SilentlyContinue -Force -ErrorAction Stop")
@@ -63,7 +63,7 @@ action :join do
     notifies    :reboot_now, 'reboot[adjoin_fx_reboot]', :immediately if new_resource.handle_reboot == true
     environment 'clear_password' => new_resource.password
     code        <<-EOH
-$username = '#{new_resource.username}'
+$username = '#{new_resource.domain}\\#{new_resource.username}'
 $password = '#{new_resource.password}' | ConvertTo-SecureString -asPLainText -Force
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName "#{new_resource.domain}" #{options_string} -Credential $credential -WarningAction SilentlyContinue -Force -ErrorAction Stop
