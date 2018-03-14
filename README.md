@@ -37,7 +37,7 @@ You can use it on rhel or windows.
 | `no_password` | `[true, false]` | `false` | `false` | `rhel` | Do not specify a password for joining |
 | `handle_reboot` | `[true, false]` | `false` | `true` | `windows` | Reboots the server after joining the machine, be aware that it won't handle launching chef after the reboot you will have to handle that yourself |
 | `new_name` | `String` | `false` | - | `windows` | New server name |
-| `pass_thru` | `[true, false]` | `false` | `windows` | Adds Pass-Thru option to joining command |
+| `pass_thru` | `[true, false]` | `false` | `false` | `windows` | Adds Pass-Thru option to joining command |
 
 ##### Notes
 
