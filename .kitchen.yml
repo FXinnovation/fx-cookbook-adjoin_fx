@@ -99,8 +99,6 @@ suites:
         password: wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg
         server: activedirectory.c.dazzlingwrench.internal
     includes:
-    - windows2008
-    - windows2012
     - windows2016
     verifier:
       inspec_tests:
