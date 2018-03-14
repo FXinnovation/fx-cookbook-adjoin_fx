@@ -18,5 +18,6 @@ adjoin_fx 'default' do
   server     node['adjoin_fx']['server']
   os_name    node['platform']              unless node['platform_family'] == 'windows'
   os_version node['platform_version']      unless node['platform_family'] == 'windows'
+  new_name   node['platform']              if node['platform_family'] == 'windows'
   action     :join
 end
