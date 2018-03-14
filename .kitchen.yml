@@ -5,7 +5,7 @@ driver:
   region: us-east1
   preemptible: true
   metadata:
-    ssh-keys: <%= 'administrator:' + IO.binread("/tmp/id_rsa.pub").rstrip! %>
+    ssh-keys: <%= 'kitchenuser:' + IO.binread("/tmp/id_rsa.pub").rstrip! %>
   tags:
   - fxinnovation
 
@@ -26,7 +26,7 @@ verifier:
   output: "%{platform}_%{suite}_inspec.xml"
 
 transport:
-  username: administrator
+  username: kitchenuser
   ssh_key: /tmp/id_rsa
 
 platforms:
