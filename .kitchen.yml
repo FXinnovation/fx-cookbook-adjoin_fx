@@ -4,6 +4,7 @@ driver:
   project: dazzlingwrench
   region: us-east1
   preemptible: true
+  inst_name: <platform>-<UUID>
   metadata:
     ssh-keys: <%= 'kitchenuser:' + IO.binread("/tmp/id_rsa.pub").rstrip! %>
   tags:
