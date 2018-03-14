@@ -15,6 +15,7 @@ provisioner:
   wait_for_retry: 300
   retry_on_exit_code:
   - 35
+  - 1
   client_rb:
     exit_status: :enabled
     client_fork: false
