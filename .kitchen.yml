@@ -12,10 +12,9 @@ driver:
 provisioner:
   name: chef_zero
   max_retries: 3
-  wait_for_retry: 600
+  wait_for_retry: 90
   retry_on_exit_code:
   - 35
-  - 1
   client_rb:
     exit_status: :enabled
     client_fork: false
@@ -47,12 +46,12 @@ platforms:
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
+          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm quickconfig -q
           winrm s winrm/config/winrs '@{MaxMemoryPerShellMB="512"}'
           winrm s winrm/config '@{MaxTimeoutms="1800000"}'
           winrm s winrm/config/service '@{AllowUnencrypted="true"}'
           winrm s winrm/config/service/auth '@{Basic="true"}'
-          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm s winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
           get-service winrm
   - name: windows2012
@@ -63,15 +62,17 @@ platforms:
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
+          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm quickconfig -q
           winrm s winrm/config/winrs '@{MaxMemoryPerShellMB="512"}'
           winrm s winrm/config '@{MaxTimeoutms="1800000"}'
           winrm s winrm/config/service '@{AllowUnencrypted="true"}'
           winrm s winrm/config/service/auth '@{Basic="true"}'
-          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm s winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
           get-service winrm
   - name: windows2016
+    transport:
+      connection_retry_sleep: 30
     driver:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
@@ -80,12 +81,12 @@ platforms:
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
+          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm quickconfig -q
           winrm s winrm/config/winrs '@{MaxMemoryPerShellMB="512"}'
           winrm s winrm/config '@{MaxTimeoutms="1800000"}'
           winrm s winrm/config/service '@{AllowUnencrypted="true"}'
           winrm s winrm/config/service/auth '@{Basic="true"}'
-          netsh firewall add portopening TCP 5985 "Port 5985"
           winrm s winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
           get-service winrm
 
