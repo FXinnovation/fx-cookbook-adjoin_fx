@@ -96,7 +96,7 @@ suites:
       adjoin_fx:
         username: JoinDomain
         domain: c.dazzlingwrench.internal
-        password: 'wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg'
+        password: wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg
         server: activedirectory.c.dazzlingwrench.internal
     includes:
     - windows2008
@@ -114,10 +114,9 @@ suites:
         username: JoinDomain
         domain: c.dazzlingwrench.internal
         server: activedirectory.c.dazzlingwrench.internal
-        password: 'wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg'
+        password: wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg
     includes:
     - centos7
-    - centos6
     verifier:
       inspec_tests:
       - name: rhel
