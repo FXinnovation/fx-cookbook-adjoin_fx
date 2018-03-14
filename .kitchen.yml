@@ -46,6 +46,9 @@ platforms:
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
+          [System.Net.Dns]::GetHostAddresses("activedirectory.c.dazzlingwrench.internal").IPAddressToString | select $_ -OutVar dnsaddress
+          $wmi = Get-WmiObject win32_networkadapterconfiguration -filter "ipenabled = 'true'"
+          $wmi.SetDNSServerSearchOrder($dnsaddress)
           netsh firewall add portopening TCP 5985 "Port 5985"
           winrm quickconfig -q
           winrm s winrm/config/winrs '@{MaxMemoryPerShellMB="512"}'
@@ -103,6 +106,7 @@ suites:
     includes:
     - windows2016
     - windows2012
+    - windows2008
     verifier:
       inspec_tests:
       - name: windows
