@@ -100,6 +100,7 @@ suites:
     includes:
     - windows2016
     - windows2012
+    - windows2008
     verifier:
       inspec_tests:
       - name: windows
