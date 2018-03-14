@@ -12,7 +12,7 @@ driver:
 provisioner:
   name: chef_zero
   max_retries: 3
-  wait_for_retry: 180
+  wait_for_retry: 300
   retry_on_exit_code:
   - 35
   client_rb:
