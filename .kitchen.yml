@@ -34,18 +34,18 @@ platforms:
     driver:
       image_project: centos-cloud
       image_family: centos-6
-      inst_name: centos6-<%= SecureRandom.hex(4) =>
+      inst_name: thisisaverylongnamethatwillbechangedbykitchenandthisiswhatiwanttohappen
   - name: centos7
     driver:
       image_project: centos-cloud
       image_family: centos-7
-      inst_name: centos7-<%= SecureRandom.hex(4) =>
+      inst_name: thisisaverylongnamethatwillbechangedbykitchenandthisiswhatiwanttohappen
   - name: windows2008
     driver:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2008-r2
-      inst_name: win2008-<%= SecureRandom.hex(4) =>
+      inst_name: thisisaverylongnamethatwillbechangedbykitchenandthisiswhatiwanttohappen
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
@@ -62,7 +62,7 @@ platforms:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2012-r2
-      inst_name: win2012-<%= SecureRandom.hex(4) =>
+      inst_name: thisisaverylongnamethatwillbechangedbykitchenandthisiswhatiwanttohappen
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
@@ -79,7 +79,7 @@ platforms:
       email: 954209166228-compute@developer.gserviceaccount.com
       image_project: windows-cloud
       image_family: windows-2016
-      inst_name: win2016-<%= SecureRandom.hex(4) =>
+      inst_name: thisisaverylongnamethatwillbechangedbykitchenandthisiswhatiwanttohappen
       disk_size: 50
       metadata:
         windows-startup-script-ps1: |
