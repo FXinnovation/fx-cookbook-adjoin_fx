@@ -59,7 +59,7 @@ action :join do
   options_string << "--client-sofware=#{new_resource.client_software} "          if property_is_set?(:client_software)
   options_string << "--server_software=#{new_resource.server_software} "         if property_is_set?(:server_software)
   options_string << '--no-password '                                             if new_resource.no_password == true
-  options_string << '--unattended '                                              if new_resource.no_unattended == true
+  options_string << '--unattended '                                              if new_resource.unattended == true
 
   # Defining what property to use to join the domain
   join_fqdn = if property_is_set?(:server)
