@@ -34,6 +34,7 @@ node() {
         ).trim()
         // Verifying versions of tools
         sh 'docker run --rm fxinnovation/chefdk chef --version'
+        sh 'docker run --rm fxinnovation/chefdk chef exec stove --version'
         // Generating new temporary key
         sh 'ssh-keygen -t rsa -f /tmp/id_rsa -P \'\''
       }
@@ -61,6 +62,20 @@ node() {
         message = 'publish: FAILED'
         if (commit_id != tag_id){
           // TODO Define publishing steps
+          // Verify tag matches metadata version
+          sh "cat metadata.rb | grep -E '^version\s' | grep '${tag_id}'"
+          // Loading supermarket key
+          withCredentials([
+            sshUserPrivateKey(
+              credentialsId: 'chef_supermarket',
+              keyFileVariable: 'supermarket_key',
+              passphraseVariable: 'supermarket_passphrase',
+              usernameVariable: 'supermarket_username'
+            )
+          ]){
+            // Upload to the supermarket using stove
+            sh "docker run --rm -v \$(pwd):/data -v ${supermarket_key}:/secrets/key.pem -w /data fxinnovation/chefdk chef exec stove --no-git --username=${supermarket_username} --key /secrets/key.pem --path /data"
+          }
         }else{
           println 'Not a tagged version, skipping publish'
         }
