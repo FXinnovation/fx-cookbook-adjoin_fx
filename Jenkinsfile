@@ -61,9 +61,8 @@ node() {
       stage ('publish') {
         message = 'publish: FAILED'
         if (commit_id != tag_id){
-          // TODO Define publishing steps
           // Verify tag matches metadata version
-          sh "cat metadata.rb | grep -E '^version\s' | grep '${tag_id}'"
+          sh "cat metadata.rb | grep -E '^version\\s' | grep '${tag_id}'"
           // Loading supermarket key
           withCredentials([
             sshUserPrivateKey(
