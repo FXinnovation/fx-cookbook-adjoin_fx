@@ -22,7 +22,6 @@ property :client_software,     %w(sssd winbind)
 property :server_software,     %w(active-directory ipa)
 property :server,              String
 property :no_password,         [true, false],           default:  false
-property :unattended,          [true, false],           default:  true
 property :username,            String,                  required: true
 property :password,            String,                  required: true, sensitive: true
 property :domain,              String,                  required: true
@@ -59,7 +58,6 @@ action :join do
   options_string << "--client-sofware=#{new_resource.client_software} "          if property_is_set?(:client_software)
   options_string << "--server_software=#{new_resource.server_software} "         if property_is_set?(:server_software)
   options_string << '--no-password '                                             if new_resource.no_password == true
-  options_string << '--unattended '                                              if new_resource.unattended == true
 
   # Defining what property to use to join the domain
   join_fqdn = if property_is_set?(:server)
@@ -73,7 +71,7 @@ action :join do
   # be in the history or any output.
   execute "adjoin_fx_#{new_resource.name}" do
     environment 'JOIN_USER_SECRET' => new_resource.password
-    command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string}"
+    command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string} --unattended"
     not_if      "realm list | grep '^#{new_resource.domain}'"
     retries     3
     retry_delay 5
