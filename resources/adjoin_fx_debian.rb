@@ -10,7 +10,7 @@
 resource_name :adjoin_fx
 
 # Declaring provider
-provides :adjoin_fx, platform_family: 'rhel'
+provides :adjoin_fx, platform_family: 'debian'
 
 # Defining properties
 property :target_ou,           String
@@ -34,11 +34,12 @@ action :join do
   # Declare needed packages
   packages = %w(
     sssd
+    sssd-tools
+    ntp
     adcli
     realmd
-    samba-common-tools
-    krb5-libs
-    krb5-workstation
+    samba-common
+    krb5-user
   )
 
   # Installing needed packages
@@ -71,7 +72,7 @@ action :join do
   # be in the history or any output.
   execute "adjoin_fx_#{new_resource.name}" do
     environment 'JOIN_USER_SECRET' => new_resource.password
-    command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string} --unattended"
+    command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string} --unattended --install=/"
     not_if      "realm list | grep '^#{new_resource.domain}'"
     retries     3
     retry_delay 5
