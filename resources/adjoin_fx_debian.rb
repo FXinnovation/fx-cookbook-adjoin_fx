@@ -14,8 +14,6 @@ provides :adjoin_fx, platform_family: 'debian'
 
 # Defining properties
 property :target_ou,           String
-property :os_name,             String
-property :os_version,          String
 property :membership_software, %w(samba adcli)
 property :one_time_password,   String
 property :client_software,     %w(sssd winbind)
@@ -57,8 +55,6 @@ action :join do
 
   # Generating options_string using properties
   options_string << "--target-ou=#{new_resource.target_ou} "                     if property_is_set?(:target_ou)
-  options_string << "--os-name=#{new_resource.os_name} "                         if property_is_set?(:os_name)
-  options_string << "--os-version=#{new_resource.os_version} "                   if property_is_set?(:os_version)
   options_string << "--membership-software=#{new_resource.membership_software} " if property_is_set?(:membership_software)
   options_string << "--one-time-password=#{new_resource.one_time_password} "     if property_is_set?(:one_time_password)
   options_string << "--client-sofware=#{new_resource.client_software} "          if property_is_set?(:client_software)

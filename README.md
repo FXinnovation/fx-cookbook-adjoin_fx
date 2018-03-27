@@ -33,8 +33,8 @@ You can use it on rhel or windows.
 | `target_ou` | `String` | `false` | - | `All` | OU in which the Server Object will reside |
 | `server` | `String` | `false` | - | `All` | FQDN of specific DC to used for joining |
 | `membership_software` | `['samba', 'adcli']` | `false` | - | `['rhel', 'debian']` | Membership software to use |
-| `os_name` | `String` | `false` | - | `['rhel', 'debian']` | String that will fill the os name attribute in the AD |
-| `os_version` | `String` | `false` | - | `['rhel', 'debian']` | String that will fill the os version attribute in the AD |
+| `os_name` | `String` | `false` | - | `['rhel']` | String that will fill the os name attribute in the AD |
+| `os_version` | `String` | `false` | - | `['rhel']` | String that will fill the os version attribute in the AD |
 | `one_time_password` | `String` | `false` | - | `['rhel', 'debian']` | One time password to join the domain |
 | `client_software` | `['sssd', 'winbind']` | `false` | - | `['rhel', 'debian']` | Client software to use |
 | `server_software` | `['active-directory', 'ipa']` | `false` | - | `['rhel', 'debian']` | Type of AD you're joining |
