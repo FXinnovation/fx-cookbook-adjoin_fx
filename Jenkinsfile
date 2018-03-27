@@ -56,7 +56,7 @@ node() {
       // This will launch kitchen tests on current cookbook
       stage ('kitchen') {
         message = 'kitchen: FAILED'
-        sh 'docker run --rm -v \$(pwd):/data -v /tmp:/tmp -w /data fxinnovation/chefdk kitchen test --destroy=always -c 5'
+        sh 'docker run --rm -v \$(pwd):/data -v /tmp:/tmp -w /data fxinnovation/chefdk kitchen test --destroy=always -c 10'
       }
       stage ('publish') {
         message = 'publish: FAILED'
