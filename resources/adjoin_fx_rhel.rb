@@ -10,7 +10,7 @@
 resource_name :adjoin_fx
 
 # Declaring provider
-provides :adjoin_fx, platform_family: 'rhel'
+provides :adjoin_fx, platform_family: %w(rhel debian)
 
 # Defining properties
 property :target_ou,           String
