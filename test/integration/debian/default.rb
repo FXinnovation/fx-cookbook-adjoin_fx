@@ -8,11 +8,12 @@ control 'adjoin_fx - debian - 01' do
   title 'The required packages should be installed'
   packages = %w(
     sssd
+    sssd-tools
+    ntp
     adcli
     realmd
     samba-common
-    krb5-libs
-    krb5-workstation
+    krb5-user
   )
   packages.each do |package_name|
     describe package(package_name) do
