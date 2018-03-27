@@ -31,6 +31,11 @@ default_action :join
 
 # Declaring join action
 action :join do
+  # Updating apt
+  apt_update 'update' do
+    action :update
+  end
+
   # Declare needed packages
   packages = %w(
     sssd
