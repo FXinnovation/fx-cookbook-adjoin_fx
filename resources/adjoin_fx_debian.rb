@@ -41,7 +41,7 @@ action :join do
     ntp
     adcli
     realmd
-    samba-common
+    samba-common-bin
     krb5-user
   )
 

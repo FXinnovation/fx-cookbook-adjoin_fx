@@ -12,7 +12,7 @@ control 'adjoin_fx - debian - 01' do
     ntp
     adcli
     realmd
-    samba-common
+    samba-common-bin
     krb5-user
   )
   packages.each do |package_name|
