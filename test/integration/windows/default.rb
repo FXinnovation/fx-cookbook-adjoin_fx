@@ -1,5 +1,5 @@
 #
-# Inspec test for adjoin_fx on rhel platform family
+# Inspec test for adjoin_fx on windows platform family
 #
 # the Inspec refetence, with examples and extensive documentation, can be
 # found at https://inspec.io/docker/reference/resources/
