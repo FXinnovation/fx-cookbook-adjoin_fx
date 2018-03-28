@@ -46,6 +46,15 @@ You can use it on rhel or windows.
 
 * On windows2008, the domain name should be resolvable on the network, altough people are used to this, it shouldn't be needed, as it is not on newer versions.
 
+### adjoin_fx_configure
+The adjoin_fx_configure resource allows you to configure a linux machine that has
+been joined to the domain using realmd
+
+#### Properties
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+
 ## Versionning
 This cookbook will follow semantic versionning 2.0.0 as described [here](https://semver.org/)
 
