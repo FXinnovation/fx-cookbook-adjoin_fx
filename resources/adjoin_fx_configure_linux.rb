@@ -38,9 +38,9 @@ action :configure do
     new_resource.login_groups.each do |login_group|
       # Add the login group
       execute "adjoin_fx_configure_login_group_#{login_group}" do
-        command "realm permit --realm \"#{new_resource.domain}\" --groups \"#{login_group.tr(' ','_').downcase}\""
-	not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-groups:\" | grep \"#{login_group}\""
-	action  :run
+        command "realm permit --realm \"#{new_resource.domain}\" --groups \"#{login_group.tr(' ', '_').downcase}\""
+        not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-groups:\" | grep \"#{login_group}\""
+        action  :run
       end
     end
   end
@@ -50,9 +50,9 @@ action :configure do
     # TODO: Add removal of any user which isn't passed on
     new_resource.login_users.each do |login_user|
       execute "adjoin_fx_configure_login_user_#{login_user}" do
-        command "realm permit --realm \"#{new_resource.domain}\" \"#{login_user.tr(' ','_').downcase}\""
-	not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-logins:\" | grep \"#{login_user}\""
-	action  :run
+        command "realm permit --realm \"#{new_resource.domain}\" \"#{login_user.tr(' ', '_').downcase}\""
+        not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-logins:\" | grep \"#{login_user}\""
+        action  :run
       end
     end
   end
