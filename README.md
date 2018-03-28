@@ -13,7 +13,6 @@ N/A
 * windows2016
 * rhel7
 * centos7
-* ubuntu1404
 * ubuntu1604
 * debian8
 * debian9

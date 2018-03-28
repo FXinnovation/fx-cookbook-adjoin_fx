@@ -163,7 +163,6 @@ suites:
     includes:
     - debian8
     - debian9
-    - ubuntu1404
     - ubuntu1604
     verifier:
       inspec_tests:

@@ -69,6 +69,14 @@ action :join do
                 new_resource.domain
               end
 
+  # Defining service resource for realmd
+  # NOTE: On debian based servers we do this because realmd doesn't update immediately after joining
+  # this could cause some unwanted effects on a later action in the run list. We're restarting realmd
+  # to make sure changes (joining the machine) have been taken into account
+  service 'realmd' do
+    action :nothing
+  end
+
   # Joining AD
   # NOTE: Putting the password as an env var is safer because it won't
   # be in the history or any output.
@@ -76,6 +84,7 @@ action :join do
     environment 'JOIN_USER_SECRET' => new_resource.password
     command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string} --unattended --install=/"
     not_if      "realm list | grep '^#{new_resource.domain}'"
+    notifies    :restart, 'service[realmd]', :immediately
     retries     3
     retry_delay 5
   end

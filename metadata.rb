@@ -11,5 +11,5 @@ source_url       'https://bitbucket.org/fxadmin/public-common-cookbook-adjoin_fx
 supports         'redhat',  '>= 7.0'
 supports         'centos',  '>= 7.0'
 supports         'windows', '>= 6.1'
-supports         'ubuntu',  '>= 14.04'
+supports         'ubuntu',  '>= 16.04'
 supports         'debian',  '>= 8.0'
