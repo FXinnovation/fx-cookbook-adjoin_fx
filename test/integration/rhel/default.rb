@@ -5,7 +5,7 @@
 # found at https://inspec.io/docker/reference/resources/
 #
 control 'adjoin_fx - rhel - 01' do
-  title 'The required packages should be installed'
+  title 'Ensure required packages are installed'
   packages = %w(
     sssd
     adcli
@@ -22,9 +22,23 @@ control 'adjoin_fx - rhel - 01' do
 end
 
 control 'adjoin_fx - rhel - 02' do
-  title 'The computer should be joined to a domain'
+  title 'Ensure ocmputer is joined to a domain'
   describe command('realm list') do
     its('stdout') { should match(/domain-name:/) }
     its('stdout') { should match(/realm-name:/) }
+  end
+end
+
+control 'adjoin_fx_configure - rhel - 01' do
+  title 'Ensure computer has correct login groups'
+  describe command('realm list') do
+    its('stdout') { should match(/fakegroup/) }
+  end
+end
+
+control 'adjoin_fx_configure - rhel - 02' do
+  title 'Ensure computer has correct login users'
+  describe command('realm list') do
+    its('stdout') { should match(/fakeuser/) }
   end
 end
