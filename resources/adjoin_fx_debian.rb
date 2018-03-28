@@ -42,6 +42,7 @@ action :join do
     adcli
     realmd
     samba-common-bin
+    samba-libs
     krb5-user
   )
 
