@@ -48,12 +48,16 @@ You can use it on rhel or windows.
 
 ### adjoin_fx_configure
 The adjoin_fx_configure resource allows you to configure a linux machine that has
-been joined to the domain using realmd
+been joined to the domain using realmd.
 
 #### Properties
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|
+| `domain` | `String` | `true` | - | Domain on which to apply the configuration |
+| `login_groups` | `Array` | `false` | - | Array of String, each string represents an AD groups that will be allowed to login |
+| `login_users` | `Array` | `false` | - | Array of String, each string represents an AD user (without the domain) that will be allowed to login |
+| `deny_all` | `[true, false]` | `false` | - | Specifies if you want to run a deny all, if login groups or users have been specified, this command will be executed before the others. This will help you make sure only the specified groups are allowed to login |
 
 ## Versionning
 This cookbook will follow semantic versionning 2.0.0 as described [here](https://semver.org/)
