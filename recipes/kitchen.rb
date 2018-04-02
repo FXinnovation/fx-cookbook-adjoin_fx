@@ -20,3 +20,10 @@ adjoin_fx 'default' do
   os_version node['platform_version']      if node['platform_family'] == 'rhel'
   action     :join
 end
+
+adjoin_fx_configure 'default' do
+  domain       node['adjoin_fx']['domain']
+  login_groups node['adjoin_fx']['login_groups']
+  login_users  node['adjoin_fx']['login_users']
+  action       :configure
+end unless node['platform_family'] == 'windows'

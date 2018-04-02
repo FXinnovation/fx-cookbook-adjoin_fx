@@ -144,6 +144,10 @@ suites:
         domain: c.dazzlingwrench.internal
         server: activedirectory.c.dazzlingwrench.internal
         password: wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg
+        login_groups:
+        - fakegroup
+        login_users:
+        - fakeuser
     includes:
     - centos7
     - redhat7
@@ -160,6 +164,10 @@ suites:
         domain: c.dazzlingwrench.internal
         server: activedirectory.c.dazzlingwrench.internal
         password: wSAE5Q7KHGJzeY8bMsPUwyFgqjR4pu2zUXB@G5eV9QHMwrxCB8S4Y3rL!ig6Vs3XYqvg
+        login_groups:
+        - fakegroup
+        login_users:
+        - fakeuser
     includes:
     - debian8
     - debian9

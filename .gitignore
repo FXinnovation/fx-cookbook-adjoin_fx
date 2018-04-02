@@ -16,7 +16,7 @@ bin/*
 .kitchen.local.yml
 
 # inspec
-*inspec.xlm
+*inspec.xml
 
 # Chef
 Berksfile.lock
