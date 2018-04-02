@@ -33,6 +33,7 @@ action :configure do
   if property_is_set?(:deny_all)
     execute 'adjoin_fx_confgiure_deny_all' do
       command "realm deny -all --unattended --realm \"#{new_resource.domain}\""
+      user    'root'
       action  :run
     end
   end
@@ -46,7 +47,9 @@ action :configure do
       execute "adjoin_fx_configure_login_group_#{login_group}" do
         command "realm permit --realm \"#{new_resource.domain}\" --groups \"#{login_group.tr(' ', '_').downcase}\""
         user    'root'
-        not_if  lazy { "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-groups:\" | grep \"#{login_group}\"" }
+        not_if  lazy {
+          shell_out!("echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-groups:\" | grep \"#{login_group}\"").stdout
+	}
         action  :run
       end
     end
@@ -59,7 +62,9 @@ action :configure do
       execute "adjoin_fx_configure_login_user_#{login_user}" do
         command "realm permit --realm \"#{new_resource.domain}\" \"#{login_user.tr(' ', '_').downcase}@#{new_resource.domain}\""
         user    'root'
-        not_if  lazy { "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-logins:\" | grep \"#{login_user}\"" }
+        not_if  lazy {
+          shell_out!("echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-logins:\" | grep \"#{login_user}\"").stdout
+	}
         action  :run
       end
     end
