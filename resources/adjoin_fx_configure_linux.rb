@@ -23,6 +23,12 @@ default_action :configure
 
 # Declaring configure action
 action :configure do
+  # Installing dependency to configure realmd on debian 9+ servers
+  package 'packagekit' do
+    action  :install
+    only_if { node['platform_version'] > '9.0' && node['platform'] == 'debian' }
+  end
+
   # Deny login from all groups if property is set for defined realm
   if property_is_set?(:deny_all)
     execute 'adjoin_fx_confgiure_deny_all' do
