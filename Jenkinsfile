@@ -17,7 +17,7 @@ library(
 )
 
 node{
-  checkout scm
+  fx_checkout()
   foodcritic()
   cookstyle()
 }
