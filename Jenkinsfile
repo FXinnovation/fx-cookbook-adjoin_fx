@@ -20,4 +20,5 @@ node{
   scmInfo = fx_checkout()
   foodcritic()
   cookstyle()
+  kitchen()
 }
