@@ -18,6 +18,5 @@ library(
 
 node{
   checkout scm
-  foodcritic()
-  cookstyle()
+  foodcritic(debug: true)
 }
