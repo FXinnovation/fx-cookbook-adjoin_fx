@@ -16,5 +16,7 @@ library(
     )
 )
 
-output = command('echo "foo"')
-echo output
+node{
+  output = command('echo "foo"')
+  echo output
+}
