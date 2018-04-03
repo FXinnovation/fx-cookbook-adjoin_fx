@@ -20,5 +20,6 @@ node{
   scmInfo = fx_checkout()
   foodcritic()
   cookstyle()
+  sh 'ssh-keygen -t rsa -f /tmp/id_rsa -P \'\''
   kitchen()
 }
