@@ -18,6 +18,6 @@ library(
 
 node{
   checkout scm
-  foodcritic
-  cookstyle
+  foodcritic()
+  cookstyle()
 }
