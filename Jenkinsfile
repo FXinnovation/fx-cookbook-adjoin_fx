@@ -16,4 +16,5 @@ library(
     )
 )
 
-cookbook{scm}
+output = command('echo "foo"')
+echo output
