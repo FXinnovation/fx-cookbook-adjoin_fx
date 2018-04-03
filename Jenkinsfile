@@ -16,4 +16,4 @@ library(
     )
 )
 
-cookbook(scm){}
+cookbook{scm}
