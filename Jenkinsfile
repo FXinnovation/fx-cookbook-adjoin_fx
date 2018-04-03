@@ -17,6 +17,7 @@ library(
 )
 
 node{
-  output = command('echo "foo"')
-  echo output
+  checkout scm
+  foodcritic
+  cookstyle
 }
