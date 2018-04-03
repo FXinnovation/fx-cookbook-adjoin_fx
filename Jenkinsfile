@@ -15,4 +15,4 @@ library(
         ]
     )
 )
-cookbook()
+fx_cookbook()
