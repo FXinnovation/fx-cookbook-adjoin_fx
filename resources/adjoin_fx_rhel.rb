@@ -35,10 +35,10 @@ action :join do
   packages = %w(
     sssd
     adcli
-    realmd
     samba-common-tools
     krb5-libs
     krb5-workstation
+    realmd
   )
 
   # Installing needed packages
