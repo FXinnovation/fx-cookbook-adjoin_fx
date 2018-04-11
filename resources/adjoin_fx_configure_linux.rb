@@ -35,7 +35,7 @@ action :configure do
     user    'root'
     action  :run
     only_if { new_resource.deny_all }
-  end if property_is_set?(:deny_all)
+  end if new_resource.property_is_set?(:deny_all)
 
   # Allow login from login groups if property is set
   # TODO: Add removal of any group which isn't passed on
@@ -48,7 +48,7 @@ action :configure do
       action  :run
       not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-groups:\" | grep \"#{login_group}\""
     end
-  end if property_is_set?(:login_groups)
+  end if new_resource.property_is_set?(:login_groups)
 
   # Allow login from login users if property is set
   # TODO: Add removal of any user which isn't passed on
@@ -59,5 +59,5 @@ action :configure do
       action  :run
       not_if  "echo \"$(realm list | grep -Pzo \"^#{new_resource.domain}(\\s{2}.*){1,}\")\" | grep \"permitted-logins:\" | grep \"#{login_user}\""
     end
-  end if property_is_set?(:login_users)
+  end if new_resource.property_is_set?(:login_users)
 end

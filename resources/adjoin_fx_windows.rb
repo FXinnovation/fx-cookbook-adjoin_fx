@@ -38,13 +38,13 @@ action :join do
   options_string = ''
 
   # Defining target_ou_string
-  options_string << "-OUPath \"#{new_resource.target_ou}\" " if property_is_set?(:target_ou)
+  options_string << "-OUPath \"#{new_resource.target_ou}\" " if new_resource.property_is_set?(:target_ou)
 
   # Defining server string
-  options_string << "-Server \"#{new_resource.server}\" " if property_is_set?(:server)
+  options_string << "-Server \"#{new_resource.server}\" " if new_resource.property_is_set?(:server)
 
   # Defining new_name string
-  options_string << "-NewName \"#{new_resource.new_name}\" " if property_is_set?(:new_name)
+  options_string << "-NewName \"#{new_resource.new_name}\" " if new_resource.property_is_set?(:new_name)
 
   # Defining force option
   options_string << '-PassThru ' if new_resource.pass_thru == true
