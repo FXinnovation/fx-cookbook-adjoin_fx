@@ -63,7 +63,7 @@ action :join do
   options_string << '--no-password '                                             if new_resource.no_password == true
 
   # Defining what property to use to join the domain
-  join_fqdn = if property_is_set?(:server)
+  join_fqdn = if new_resource.property_is_set?(:server)
                 new_resource.server
               else
                 new_resource.domain
