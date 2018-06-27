@@ -73,7 +73,7 @@ action :join do
     environment 'JOIN_USER_SECRET' => new_resource.password
     command     "echo ${JOIN_USER_SECRET} | realm join -v --user=#{new_resource.username} #{join_fqdn} #{options_string} --unattended"
     not_if      "realm list | grep '^#{new_resource.domain}'"
-    retries     3
-    retry_delay 5
+    retries     5
+    retry_delay 10
   end
 end
