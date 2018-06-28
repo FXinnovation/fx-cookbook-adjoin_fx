@@ -55,7 +55,7 @@ action :join do
   options_string = ''
 
   # Generating options_string using properties
-  options_string << "--target-ou=#{new_resource.target_ou} "                     if new_resource.property_is_set?(:target_ou)
+  options_string << "--computer-ou=#{new_resource.target_ou} "                     if new_resource.property_is_set?(:target_ou)
   options_string << "--membership-software=#{new_resource.membership_software} " if new_resource.property_is_set?(:membership_software)
   options_string << "--one-time-password=#{new_resource.one_time_password} "     if new_resource.property_is_set?(:one_time_password)
   options_string << "--client-sofware=#{new_resource.client_software} "          if new_resource.property_is_set?(:client_software)

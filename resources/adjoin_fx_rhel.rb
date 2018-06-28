@@ -50,7 +50,7 @@ action :join do
   options_string = ''
 
   # Generating options_string using properties
-  options_string << "--target-ou=#{new_resource.target_ou} "                     if new_resource.property_is_set?(:target_ou)
+  options_string << "--computer-ou=#{new_resource.target_ou} "                     if new_resource.property_is_set?(:target_ou)
   options_string << "--os-name=#{new_resource.os_name} "                         if new_resource.property_is_set?(:os_name)
   options_string << "--os-version=#{new_resource.os_version} "                   if new_resource.property_is_set?(:os_version)
   options_string << "--membership-software=#{new_resource.membership_software} " if new_resource.property_is_set?(:membership_software)
